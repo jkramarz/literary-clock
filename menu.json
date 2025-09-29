@@ -1,0 +1,11 @@
+{
+	"items": [
+		{"name": "literary-clock",
+			"items" : [
+				{"name": "Update now",            "priority":0, "action": "bin/update.sh force"},
+				{"name": "Enable clock",  "priority":0, "action": "bin/enable.sh",  "if": "\"/etc/upstart/literary-clock.conf\" -f !" },
+				{"name": "Disable clock", "priority":0, "action": "bin/disable.sh", "if": "\"/etc/upstart/literary-clock.conf\" -f" }
+			]
+		}
+	]
+}
