@@ -4,9 +4,16 @@
 // Jaap Meijers, 2018
 // changed and adapted by lenwe, 2025
 
-
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
+ini_set('memory_limit', '2048M');
+
+$screen_width=600;
+$screen_height=800;
+
+// for Kindle Paperwhite 2
+// $screen_width=758;
+// $screen_height=1024;
 
 $imagenumber = 0;
 $previoustime = 0;
@@ -32,7 +39,7 @@ if (($handle = fopen("quotes.csv", "r")) !== FALSE) {
         $timestring = trim($data[2]);
         $quote = $data[3];
         $quote = trim(
-            str_replace(array('<br/>', '<br>'), " ",
+            str_replace(array('<br/>', '<br>', '<em>', '</em>'), " ",
              preg_replace('/\s+/', ' ', $quote)
             )
         );
@@ -59,10 +66,12 @@ function TurnQuoteIntoImage($image_id, $quote, $timestring, $title, $author) {
     global $font_path;
     global $font_path_bold;
     global $creditFont;
+    global $screen_width;
+    global $screen_height;
 
     //image dimensions
-    $width = 600;
-    $height = 800;
+    $width = $screen_width;
+    $height = $screen_height;
 
     //text margin
     $margin = 26;
